@@ -31,7 +31,13 @@ const server = http.createServer((req, res) => {
       }
       res.end("Data is stored.");
     });
-
+  }else if (req.url === '/tasks/clear') {
+    fs.writeFile(storedData,'[]',(err,data) => {
+      if (err){
+        res.end('An unexpected error occured.')
+      }
+      res.end("The tasks has been cleared.")
+    })
   }else{
     res.end('Route not found');
   }
